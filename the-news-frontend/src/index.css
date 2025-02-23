@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900');
+@import 'tailwindcss';
+
+@theme {
+  --color-thenews-primary-50: #ddcc99;
+  --color-thenews-primary-100: #ddbb55;
+  --color-thenews-primary: #ffcf00;
+  --color-thenews-primary-200: #997700;
+  --color-thenews-primary-250: #443300;
+
+  --breakpoint-xxs: 20rem;
+  --breakpoint-xs: 30rem;
+
+  --font-poppins: 'Poppins', serif;
+  --font-montserrat: 'Montserrat', serif;
+  --font-verdana: 'Verdana', serif;
+
+  --color-thenews-black: #222222;
+}
+
+:root {
+  --section-y-spacing: 86px;
+  --section-x-spacing: 100px;
+
+  --padding-component-small: 12px;
+  --padding-component-medium: 36px;
+
+  --font-size-small: 16px;
+  --font-size-medium: 24px;
+  --font-size-big: 32px;
+  --font-size-large: 36px;
+  --font-size-xxl: 32px;
+  --font-size-xl: 48px;
+  --font-size-logo-small: 24px;
+  --font-size-logo: 64px;
+
+  --margin-component-xxsmall: 12px;
+  --margin-component-extrasmall: 16px;
+  --margin-component-small: 36px;
+  --margin-component-medium: 48px;
+  --margin-component-big: 88px;
+
+  --exp-progress: 0px;
+
+  --rounding-radius: 5px;
+}
+
+body {
+  background-color: var(--color-thenews-black);
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+#exp_bar::after {
+  width: var(--exp-progress);
+}
+
+.thenews-container {
+  display: flex;
+  justify-self: center;
+  width: 86vw;
+  margin-top: var(--margin-component-big);
+}
+
+.thenews-container-center {
+  width: clamp(25%, 50%, 50%);
+}
+
+.thenews-container-charts {
+  width: clamp(25%, 40%, 40%);
+}
