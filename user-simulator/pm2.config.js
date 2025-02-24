@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'user-simulator',
-      script: 'dist/index.js',
+      script: './index.ts',
       watch: false,
     },
   ],
