@@ -22,7 +22,7 @@ async function getAdmin(email: string) {
 
 async function getStatisticsTable() {
   const [userCountRows]: any = await pool.query(
-    `SELECT COUNT(*) AS userCount FROM users`,
+    `SELECT COUNT(*) AS userCount FROM users WHERE type='user'`,
   );
 
   const [newsletterCountRows]: any = await pool.query(
@@ -34,7 +34,7 @@ async function getStatisticsTable() {
   );
 
   const [lastNewsletterRows]: any = await pool.query(
-    `SELECT id FROM newsletters ORDER BY created_at DESC LIMIT 1`,
+    `SELECT id FROM newsletters ORDER BY created_at ASC LIMIT 1`,
   );
 
   let isWebsiteUp: boolean = false;
@@ -115,7 +115,7 @@ async function getGraphArray() {
   );
 
   const [weekdayActivityRows]: any = await pool.query(
-    `SELECT DAYNAME(created_at) AS weekday, COUNT(*) AS count FROM newsletters GROUP BY weekday`,
+    `SELECT DAYNAME(date) AS weekday, COUNT(*) AS count FROM users_newsletters GROUP BY weekday`,
   );
 
   const [utmActivityRows]: any = await pool.query(
@@ -147,7 +147,7 @@ async function getGraphArray() {
         type: 'bar',
         options: [
           'Dia da Semana Mais Ativo',
-          'Quantidade por utm_source/medium/channel',
+          'Quantidade por utm_source',
           'Maior Atividade (data mais antiga - data mais nova)',
         ],
       },
@@ -162,8 +162,8 @@ async function getGraphArray() {
           })),
         },
         {
-          option: 'Quantidade por utm_source/medium/channel',
-          xName: 'utm_source/medium/channel',
+          option: 'Quantidade por utm_source',
+          xName: 'utm_source',
           yName: 'quantidade',
           graphData: utmActivityRows.map((row: any) => ({
             x: row.utm_source,
@@ -172,7 +172,7 @@ async function getGraphArray() {
         },
         {
           option: 'Maior Atividade (data mais antiga - data mais nova)',
-          xName: 'dia',
+          xName: 'data',
           yName: 'quantidade',
           graphData: newUsersRows.map((row: any) => ({
             x: row.date,

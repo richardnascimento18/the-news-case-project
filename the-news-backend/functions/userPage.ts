@@ -71,12 +71,12 @@ export async function getGraphArray(email: string) {
   connection.beginTransaction();
 
   const [periodRows]: any = await connection.query(
-    `SELECT created_at AS date, COUNT(*) AS count FROM newsletters
-    GROUP BY date ORDER BY created_at`,
+    `SELECT date AS date, COUNT(*) AS count FROM users_newsletters
+    GROUP BY date ORDER BY date`,
   );
 
   const [weekdayRows]: any = await pool.query(
-    `SELECT DAYNAME(created_at) AS weekday, COUNT(*) AS count FROM newsletters
+    `SELECT DAYNAME(date) AS weekday, COUNT(*) AS count FROM users_newsletters
     GROUP BY weekday`,
   );
 
